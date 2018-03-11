@@ -1,0 +1,29 @@
+{
+  "name": "ParksCenter",
+  "version": "0.1.0",
+  "keywords": [
+    "wdwnt",
+    "hud",
+    "show"
+  ],
+  "author": "Ben Harris",
+  "contributors": [
+    {
+      "name": "Ben Harris",
+      "email": "benharris5@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "angular": "^1.6.9",
+    "angular-animate": "^1.6.9",
+    "angular-aria": "^1.6.9",
+    "angular-material": "^1.1.0",
+    "angular-messages": "^1.6.9",
+    "angular-route": "^1.6.9",
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "start": "http-server -c-1"
+  }
+}
