@@ -1,0 +1,28 @@
+<div arrow-control="$ctrl.arrowControl[$dir]()" class="parkscenter-hud">
+	<div class="sidebar">
+		<div class="item-list">
+			<div class="thumbnail">
+				<img src="images/wdwntLogo.png" ng-src="{{$ctrl.getCurItem().thumbnail}}"/>
+			</div>
+			<div class="clock">
+				&nbsp;
+				<span ng-show="$ctrl.clockDate">{{$ctrl.clockDate | date:'m:ss'}}</span>
+			</div>
+			<div class="header">
+				Times Guide
+			</div>
+			<div ng-repeat="item in $ctrl.showData" class="{{$ctrl.getItemState($index)}}">
+				{{item.shortName}}
+			</div>
+			<div class="logo">
+				<img src="images/parksCenter.png"/>
+			</div>
+		</div>
+	</div>
+	<div class="footer" id="footer">
+		<span>{{$ctrl.getCurItem().longName}}</span>
+	</div>
+</div>
+<div ng-show="false">
+	<img ng-repeat="src in $ctrl.imageList track by $index" ng-src={{src}}>
+</div>
