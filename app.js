@@ -1,17 +1,17 @@
 angular.module('parkscenter', ['ngRoute', 'ngMaterial'])
 .config(function($routeProvider, $mdThemingProvider){
 	$routeProvider
-    	.when('/', {
-    		template: '<json-reader></json-reader>'
-    	})
+        .when('/', {
+            template: '<hud-editor></hud-editor>'
+        })
     	.when('/hud', {
     		template: '<hud-main></hud-main>'
     	})
     	.otherwise({
-    		template: '<json-reader></json-reader>'
+    		template: '<hud-editor></hud-editor>'
     	});
 	
 	$mdThemingProvider.theme('default')
 		.primaryPalette('blue')
-		.accentPalette('light-blue')
+		.accentPalette('light-blue');
 });

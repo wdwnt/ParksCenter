@@ -3,12 +3,11 @@ angular.module('parkscenter')
 	templateUrl: 'templates/hud-main.template.html',
 	controller: function($scope, $rootScope, $location, $timeout){
 		var ctrl = this;
-		ctrl.showData = [];
 		
 		var inc = function(){
 			ctrl.curIndex++;
-			if(ctrl.curIndex>ctrl.showData.length){
-				ctrl.curIndex = ctrl.showData.length;
+			if(ctrl.curIndex>$rootScope.showData.length){
+				ctrl.curIndex = $rootScope.showData.length;
 			}
 			ctrl.restartTimeout();
 		};
@@ -29,15 +28,13 @@ angular.module('parkscenter')
 		ctrl.$onInit = function(){
 			if(!$rootScope.showData){
 				$location.url("/");
-			}else{
-				ctrl.showData = $rootScope.showData;
 			}
 			
 			ctrl.curIndex=-1;
 			ctrl.clock=-1;
 			
 			ctrl.imageList = ['images/wdwntLogo.png'];
-			angular.forEach(ctrl.showData, function(item){
+			angular.forEach($rootScope.showData, function(item){
 				ctrl.imageList.push(item.thumbnail);
 			});
 		};
@@ -60,8 +57,8 @@ angular.module('parkscenter')
 		};
 		
 		ctrl.getCurItem = function(){
-			if(ctrl.curIndex>=0 && ctrl.curIndex<ctrl.showData.length){
-				return ctrl.showData[ctrl.curIndex];
+			if(ctrl.curIndex>=0 && ctrl.curIndex<$rootScope.showData.length){
+				return $rootScope.showData[ctrl.curIndex];
 			}else{
 				if(ctrl.curIndex===-1){
     				return {
@@ -90,32 +87,5 @@ angular.module('parkscenter')
 				return "present";
 			}
 		};
-	}
-})
-.directive("arrowControl", function(){
-	return {
-		restrict: "A",
-		link: function($scope, $element, $attrs){
-			var callback = function(event){
-    			var keyCode = event.which || event.keyCode;
-    			if(keyCode === 37){
-    				$scope.$eval($attrs.arrowControl, {$dir: 'left'});
-    				$scope.$apply();
-    			}else if(keyCode === 38){
-    				$scope.$eval($attrs.arrowControl, {$dir: 'up'});
-    				$scope.$apply();
-    			}else if(keyCode === 39){
-    				$scope.$eval($attrs.arrowControl, {$dir: 'right'});
-    				$scope.$apply();
-    			}else if(keyCode === 40){
-    				$scope.$eval($attrs.arrowControl, {$dir: 'down'});
-    				$scope.$apply();
-    			}
-			};
-			document.addEventListener("keydown", callback, false);
-			$scope.$on('$destroy', function(){
-				document.removeEventListener("keydown", callback, false);
-			});
-		}
 	}
 });

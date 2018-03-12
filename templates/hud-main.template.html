@@ -2,16 +2,16 @@
 	<div class="sidebar">
 		<div class="item-list">
 			<div class="thumbnail">
-				<img src="images/wdwntLogo.png" ng-src="{{$ctrl.getCurItem().thumbnail}}"/>
+				<img ng-src="{{$ctrl.getCurItem().thumbnail}}"
+					 fallback="images/wdwntLogo.png"/>
 			</div>
 			<div class="clock">
-				&nbsp;
-				<span ng-show="$ctrl.clockDate">{{$ctrl.clockDate | date:'m:ss'}}</span>
+				<span ng-show="$ctrl.clockDate">{{$ctrl.clockDate | date:'m:ss'}}&nbsp;</span>
 			</div>
 			<div class="header">
 				Times Guide
 			</div>
-			<div ng-repeat="item in $ctrl.showData" class="{{$ctrl.getItemState($index)}}">
+			<div ng-repeat="item in $root.showData" class="{{$ctrl.getItemState($index)}}">
 				{{item.shortName}}
 			</div>
 			<div class="logo">

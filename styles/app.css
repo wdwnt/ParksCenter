@@ -89,3 +89,7 @@
 	color: white;
 	border: 1px solid black;
 }
+
+.parkscenter-hud input{
+	width: calc(100% - 20px);
+}
