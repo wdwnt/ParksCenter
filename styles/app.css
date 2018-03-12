@@ -90,6 +90,14 @@
 	border: 1px solid black;
 }
 
+/* Animations */
+
+.parkscenter-hud .sidebar .item-list .short-name.ng-animate{
+	transition:0.5s ease all;
+}
+
+/* Editor specific classes */
+
 .parkscenter-hud input{
 	width: calc(100% - 20px);
 }

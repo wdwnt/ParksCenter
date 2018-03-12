@@ -8,13 +8,15 @@
 			<div class="clock">
 				<span ng-show="$ctrl.clockDate">{{$ctrl.clockDate | date:'m:ss'}}&nbsp;</span>
 			</div>
-			<div class="header">
+			<div class="header" ng-click="$ctrl.curIndex = -1">
 				Times Guide
 			</div>
-			<div ng-repeat="item in $root.showData" class="{{$ctrl.getItemState($index)}}">
+			<div ng-repeat="item in $root.showData"
+				class="short-name" ng-class="$ctrl.getItemState($index)"
+				ng-click="$ctrl.curIndex = $index">
 				{{item.shortName}}
 			</div>
-			<div class="logo">
+			<div class="logo" ng-click="$ctrl.curIndex = $root.showData.length">
 				<img src="images/parksCenter.png"/>
 			</div>
 		</div>
