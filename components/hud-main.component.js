@@ -37,6 +37,8 @@ angular.module('parkscenter')
 			angular.forEach($rootScope.showData, function(item){
 				ctrl.imageList.push(item.thumbnail);
 			});
+
+			ctrl.showIntroLogo = false;
 		};
 		
 		ctrl.tick = function(){
@@ -86,6 +88,17 @@ angular.module('parkscenter')
 			}else{
 				return "present";
 			}
+		};
+
+		ctrl.startIntro = function(){
+			var introAudio = document.getElementById("introAudio");
+			introAudio.play();
+			$timeout(function(){
+				ctrl.showIntroLogo = true;
+			}, 8000);
+			$timeout(function(){
+				ctrl.showIntroLogo = false;
+			}, 14000);
 		};
 	}
 });

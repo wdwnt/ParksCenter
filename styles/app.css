@@ -4,7 +4,7 @@
 
 	width: var(--app-width);
 	height: var(--app-height);
-	background-color: #00ff00;
+	background-color: #00ff00; /* Shouldn't be necessary, but good in case of a leak. */
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -77,8 +77,30 @@
 	color: black;
 }
 
-.parkscenter-hud .footer{
+.parkscenter-hud .main{
 	flex: 3;
+	height: 100%;
+}
+
+.parkscenter-hud .main .body{
+	width: 100%;
+	height: calc(100% - 96px);
+	background-color: #00ff00;
+	overflow: hidden;
+}
+
+.parkscenter-hud .intro-logo{
+	transition: all 1s linear;
+	position: relative;
+	left: 0px;
+}
+
+.parkscenter-hud .intro-logo.ng-hide{
+	position: relative;
+	left: 958px;
+}
+
+.parkscenter-hud .main .footer{
 	height: 54px;
 	text-align: center;
 	text-transform: uppercase;
