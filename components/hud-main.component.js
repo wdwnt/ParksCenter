@@ -6,17 +6,9 @@ angular.module('parkscenter')
 		
 		var inc = function(){
 			ctrl.curIndex++;
-			if(ctrl.curIndex>$rootScope.showData.length){
-				ctrl.curIndex = $rootScope.showData.length;
-			}
-			ctrl.restartTimeout();
 		};
 		var dec = function(){
 			ctrl.curIndex--;
-			if(ctrl.curIndex<-1){
-				ctrl.curIndex=-1;
-			}
-			ctrl.restartTimeout();
 		};
 		ctrl.arrowControl={
 				left: dec,
@@ -28,15 +20,27 @@ angular.module('parkscenter')
 		ctrl.$onInit = function(){
 			if(!$rootScope.showData){
 				$location.url("/");
+			}else{
+				ctrl.curIndex=-1;
+				ctrl.clock=-1;
+				
+				ctrl.imageList = ['images/wdwntLogo.png'];
+				angular.forEach($rootScope.showData, function(item){
+					ctrl.imageList.push(item.thumbnail);
+				});
+
+				$scope.$watch(function(){
+					return ctrl.curIndex;
+				}, function(){
+					if(ctrl.curIndex>$rootScope.showData.length){
+						ctrl.curIndex = $rootScope.showData.length;
+					}else if(ctrl.curIndex<-1){
+	    				ctrl.curIndex=-1;
+	    			}else{
+	    				ctrl.restartTimeout();
+	    			}
+				});
 			}
-			
-			ctrl.curIndex=-1;
-			ctrl.clock=-1;
-			
-			ctrl.imageList = ['images/wdwntLogo.png'];
-			angular.forEach($rootScope.showData, function(item){
-				ctrl.imageList.push(item.thumbnail);
-			});
 		};
 		
 		ctrl.tick = function(){
