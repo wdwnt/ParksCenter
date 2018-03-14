@@ -21,9 +21,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="footer" id="footer">
-		<span>{{$ctrl.getCurItem().longName}}</span>
+	<div class="main">
+		<div class="body">
+			<img class="intro-logo" ng-show="$ctrl.showIntroLogo" src="images/parksCenterIntro.png">
+		</div>
+		<div class="footer" id="footer">
+			<span>{{$ctrl.getCurItem().longName}}</span>
+		</div>
 	</div>
+</div>
+<div style="margin-top: 10px">
+	<md-button class="md-raised" ng-click="$ctrl.startIntro()">Start intro</md-button>
+	<audio controls preload="auto" id="introAudio">
+		<source src="audio/parksCenterIntro.mp3">
+	</audio>
 </div>
 <div ng-show="false">
 	<img ng-repeat="src in $ctrl.imageList track by $index" ng-src={{src}}>
