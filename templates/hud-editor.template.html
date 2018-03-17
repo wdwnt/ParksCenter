@@ -8,7 +8,7 @@
 				Duration: <input title="Duration" type="number" ng-model="$root.showData[$ctrl.curIndex].duration" style="width: 100px"> sec
 			</div>
 			<div class="header">
-				Times Guide
+				Show length: {{$ctrl.getShowDuration()}}
 			</div>
 			<div ng-repeat="item in $root.showData" class="short-name" ng-class="$ctrl.getItemState($index)" ng-click="$ctrl.curIndex = $index">
 				<input title="Short name" placeholder="Title {{$index+1}}" type="text" ng-model="item.shortName">
@@ -19,9 +19,7 @@
 		</div>
 	</div>
 	<div class="main">
-		<div class="body">
-			Hello! The intro will show here while it's playing, and this will be green otherwise so you can ChromaKey it out.
-		</div>
+		<div class="body"></div>
 		<div class="footer" id="footer">
 			<input title="Long name" type="text" ng-model="$root.showData[$ctrl.curIndex].longName" placeholder="Description {{$ctrl.curIndex+1}}">
 		</div>

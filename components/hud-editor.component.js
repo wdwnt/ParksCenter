@@ -13,7 +13,7 @@ angular.module('parkscenter')
 						shortName: "",
 						longName: "",
 						thumbnail: "images/wdwntLogo.png",
-						duration: 240
+						duration: 210
 					};
 					$rootScope.showData = [angular.copy(item), angular.copy(item), angular.copy(item),
 						angular.copy(item), angular.copy(item), angular.copy(item), angular.copy(item)];
@@ -53,5 +53,13 @@ angular.module('parkscenter')
 		ctrl.gotoShow = function(){
 			$location.url("/hud");
 		};
+
+		ctrl.getShowDuration = function(){
+			var total = 0;
+			angular.forEach($rootScope.showData, function(e){
+				total += e.duration;
+			});
+			return Math.floor(total/60)+":"+(total%60<10?'0':'')+(total%60);
+		}
 	}
 });
