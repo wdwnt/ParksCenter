@@ -2,8 +2,7 @@
 	<div class="sidebar">
 		<div class="item-list">
 			<div class="thumbnail">
-				<img ng-src="{{$ctrl.getCurItem().thumbnail}}"
-					 fallback="images/wdwntLogo.png"/>
+				<img ng-src="{{$ctrl.getCurItem().thumbnail}}" fallback="images/wdwntLogo.png"/>
 			</div>
 			<div class="clock">
 				<span ng-show="$ctrl.clockDate">{{$ctrl.clockDate | date:'m:ss'}}&nbsp;</span>
@@ -23,7 +22,7 @@
 	</div>
 	<div class="main">
 		<div class="body">
-			<img class="intro-logo" ng-show="$ctrl.showIntroLogo" src="images/parksCenterIntro.png">
+			&nbsp;
 		</div>
 		<div class="footer" id="footer">
 			<span>{{$ctrl.getCurItem().longName}}</span>
@@ -31,8 +30,17 @@
 	</div>
 </div>
 <div style="margin-top: 10px">
+	<md-select ng-model="audioOut"
+			   ng-change="$ctrl.setAllAudioOuts(audioOut)"
+			   placeholder="Select audio output"
+			   style="width: fit-content">
+		<md-option ng-repeat="device in $ctrl.audioOuts" ng-value="device.deviceId">{{device.label}}</md-option>
+	</md-select>
 	<audio controls preload="auto" id="introAudio">
 		<source src="audio/parksCenterIntro.mp3">
+	</audio>
+	<audio controls preload="auto" id="buzzer" ng-show="false">
+		<source src="audio/buzzer.mp3">
 	</audio>
 </div>
 <div ng-show="false">

@@ -1,7 +1,7 @@
 angular.module('parkscenter')
 .component('hudMain', {
 	templateUrl: 'templates/hud-main.template.html',
-	controller: function($scope, $rootScope, $location, $timeout){
+	controller: function($scope, $rootScope, $location, $timeout, $filter){
 		var ctrl = this;
 		
 		var inc = function(){
@@ -16,6 +16,21 @@ angular.module('parkscenter')
 				up: dec,
 				down: inc
 		};
+
+		ctrl.getAudioOutputs = function(){
+			ctrl.audioOuts = [];
+			navigator.mediaDevices.getUserMedia({audio: true}).then(function(){
+				navigator.mediaDevices.enumerateDevices().then(function(d){
+					ctrl.audioOuts = $filter('filter')(d, {kind: 'audiooutput'});
+					ctrl.audioOuts = $filter('orderBy')(ctrl.audioOuts, "label");
+				});
+			});
+		};
+		ctrl.setAllAudioOuts = function(deviceId){
+			angular.forEach(document.getElementsByTagName("audio"), function(audio){
+				audio.setSinkId(deviceId);
+			});
+		};
 		
 		ctrl.$onInit = function(){
 			if(!$rootScope.showData){
@@ -28,6 +43,8 @@ angular.module('parkscenter')
 				angular.forEach($rootScope.showData, function(item){
 					ctrl.imageList.push(item.thumbnail);
 				});
+
+				ctrl.getAudioOutputs();
 
 				$scope.$watch(function(){
 					return ctrl.curIndex;
@@ -48,10 +65,13 @@ angular.module('parkscenter')
 				ctrl.clock--;
 				ctrl.timeoutCallback = $timeout(function(){ctrl.tick();}, 1000);
 				ctrl.clockDate = new Date(1970, 0, 1).setSeconds(ctrl.clock);
+				if(ctrl.clock===0){
+					document.getElementById("buzzer").play();
+				}
 			}else if(ctrl.clock<0){
 				ctrl.clockDate = null;
 			}
-			$scope.$apply();
+			$timeout(function(){$scope.$apply();}, 0);
 		};
 		
 		ctrl.restartTimeout = function(){
