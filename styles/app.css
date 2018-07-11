@@ -92,7 +92,7 @@
 .parkscenter-hud .intro-logo{
 	transition: all 1s linear;
 	position: relative;
-	left: 0px;
+	left: 0;
 }
 
 .parkscenter-hud .intro-logo.ng-hide{
@@ -112,6 +112,21 @@
 	border: 1px solid black;
 }
 
+.top-panel{
+	display: flex;
+}
+
+.top-panel .right-sidebar{
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+}
+
+.bottom-panel{
+	margin-top: 10px;
+	display: flex
+}
+
 /* Animations */
 
 .parkscenter-hud .sidebar .item-list .short-name.ng-animate{
@@ -128,6 +143,24 @@
 
 .parkscenter-vs-hud .main .footer{
 	background-color: #f53214;
+}
+
+.parkscenter-vs-hud .main .footer .fight{
+	display: flex;
+	justify-content: space-between;
+}
+
+.parkscenter-vs-hud .main .footer .fight .team{
+	display: flex;
+}
+
+.parkscenter-vs-hud .main .footer .fight .scorebox{
+	width: 54px;
+	background-color: white;
+	color: black;
+	text-align: center;
+	border: 2px solid black;
+	margin: 0 10px;
 }
 
 /*
@@ -227,8 +260,8 @@
 }
 
 .parkscenter-vs-hud .main .bracket.bracket-hidden{
-	left: var(--app-width);
+	top: var(--app-height);
 }
 .parkscenter-vs-hud .main .bracket.bracket-visible{
-	left: 0;
+	top: 0;
 }

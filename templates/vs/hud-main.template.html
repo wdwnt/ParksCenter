@@ -1,19 +1,65 @@
-<div class="parkscenter-hud parkscenter-vs-hud">
-	<div class="main">
-		<div class="body">
-			<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center">
-				<bracket ng-class="$ctrl.bracketClass" model="$root.vsShowData"></bracket>
+<div class="top-panel">
+	<div class="parkscenter-hud parkscenter-vs-hud">
+		<div class="main">
+			<div class="body">
+				<div style="width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center">
+					<bracket ng-class="{'bracket-visible':$ctrl.state.bracketVisible, 'bracket-hidden':!$ctrl.state.bracketVisible}" model="$root.vsShowData"></bracket>
+				</div>
+			</div>
+			<div class="footer" id="footer">
+				<div ng-if="$ctrl.state.footer === 'fight'" class="fight">
+					<div class="team">
+						<div class="scorebox">
+							{{$ctrl.state.curGame.top.score}}
+						</div>
+						<div>
+							{{$ctrl.state.curGame.top.name}}
+						</div>
+					</div>
+					<div>vs.</div>
+					<div class="team">
+						<div>
+							{{$ctrl.state.curGame.bottom.name}}
+						</div>
+						<div class="scorebox">
+							{{$ctrl.state.curGame.bottom.score}}
+						</div>
+					</div>
+				</div>
+				<span ng-if="$ctrl.state.footer !== 'fight'">{{$ctrl.state.footer}}</span>
 			</div>
 		</div>
-		<div class="footer" id="footer">
-			<span ng-if="$ctrl.footer === 'fight'">
-				TODO FIGHT MODE
-			</span>
-			<span ng-if="$ctrl.footer !== 'fight'">{{$ctrl.footer}}</span>
+	</div>
+	<div class="right-sidebar">
+		<md-button class="md-raised md-primary" ng-click="$ctrl.state.bracketVisible = !$ctrl.state.bracketVisible">Show/hide bracket</md-button>
+		<md-button class="md-raised md-primary" ng-click="$ctrl.state.footer  = ''">Blank footer</md-button>
+		<div style="display: flex; justify-content: center; border-top: black 1px solid">
+			<a ng-click="$ctrl.sidebarRound(-1);"><i class="material-icons md-36">arrow_back</i></a>
+			<span>Round {{$ctrl.state.sidebarRound+1}}</span>
+			<a ng-click="$ctrl.sidebarRound(1);"><i class="material-icons md-36">arrow_forward</i></a>
 		</div>
+		<md-button ng-repeat="game in $root.vsShowData[$ctrl.state.sidebarRound]"
+				   class="md-raised md-primary"
+				   ng-disabled="game.isFinal || ($ctrl.state.curGame && !$ctrl.state.curGame.isFinal)"
+				   ng-click="$ctrl.setGame(game)">
+			{{game.top.name}} vs. {{game.bottom.name}}
+		</md-button>
+		<div ng-show="$ctrl.state.curGame" style="border-top: black 1px solid">
+			{{$ctrl.state.curGame.top.name}} vs. {{$ctrl.state.curGame.bottom.name}}
+		</div>
+		<table ng-show="$ctrl.state.curGame">
+			<tr ng-repeat="vote in $ctrl.state.curGameVotes track by $index">
+				<td ng-model="$ctrl.voters[$index]" contenteditable="true"></td>
+				<td><input type="checkbox" ng-disabled="$ctrl.state.curGame.isFinal" ng-click="$ctrl.state.curGameVotes[$index] = -1; $ctrl.updateScores()" ng-checked="vote === -1"></td>
+				<td><input type="checkbox" ng-disabled="$ctrl.state.curGame.isFinal" ng-click="$ctrl.state.curGameVotes[$index] = 0; $ctrl.updateScores()" ng-checked="vote === 0"></td>
+				<td><input type="checkbox" ng-disabled="$ctrl.state.curGame.isFinal" ng-click="$ctrl.state.curGameVotes[$index] = 1; $ctrl.updateScores()" ng-checked="vote === 1"></td>
+			</tr>
+		</table>
+		<md-button class="md-raised md-primary" ng-disabled="$ctrl.state.curGame.isFinal || $ctrl.state.curGameVotes.indexOf(0)!==-1" ng-show="$ctrl.state.curGame" ng-click="$ctrl.finalizeCurGame()">Finalize results</md-button>
+		<md-button style="border-top: black 1px solid" class="md-raised md-primary" ng-click="$ctrl.dumpGame()">Dump game</md-button>
 	</div>
 </div>
-<div style="margin-top: 10px">
+<div class="bottom-panel">
 	<md-select ng-model="audioOut"
 			   ng-change="$ctrl.setAllAudioOuts(audioOut)"
 			   placeholder="Select audio output"

@@ -125,7 +125,7 @@ angular.module('parkscenter')
 				if(newVal){
 					sessionStorage.setItem("lastVsGame", newVal);
 				}
-			})
+			});
 		};
 
 		ctrl.loadJSON = function(){
