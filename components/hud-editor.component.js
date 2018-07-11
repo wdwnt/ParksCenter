@@ -51,7 +51,7 @@ angular.module('parkscenter')
 		};
 
 		ctrl.gotoShow = function(){
-			$location.url("/hud");
+			$location.url("/pc/hud");
 		};
 
 		ctrl.getShowDuration = function(){

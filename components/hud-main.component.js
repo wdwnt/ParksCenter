@@ -34,7 +34,7 @@ angular.module('parkscenter')
 		
 		ctrl.$onInit = function(){
 			if(!$rootScope.showData){
-				$location.url("/");
+				$location.url("/pc/edit");
 			}else{
 				ctrl.curIndex=-1;
 				ctrl.clock=-1;
