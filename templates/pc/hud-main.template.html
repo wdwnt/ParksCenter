@@ -16,7 +16,7 @@
 				{{item.shortName}}
 			</div>
 			<div class="logo" ng-click="$ctrl.curIndex = $root.showData.length">
-				<img src="images/parksCenter.png"/>
+				<img src="../../images/parksCenter.png"/>
 			</div>
 		</div>
 	</div>
@@ -37,10 +37,10 @@
 		<md-option ng-repeat="device in $ctrl.audioOuts" ng-value="device.deviceId">{{device.label}}</md-option>
 	</md-select>
 	<audio controls preload="auto" id="introAudio">
-		<source src="audio/parksCenterIntro.mp3">
+		<source src="../../audio/parksCenterIntro.mp3">
 	</audio>
 	<audio controls preload="auto" id="buzzer">
-		<source src="audio/buzzer.mp3">
+		<source src="../../audio/buzzer.mp3">
 	</audio>
 </div>
 <div ng-show="false">

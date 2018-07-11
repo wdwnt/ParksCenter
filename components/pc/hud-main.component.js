@@ -1,6 +1,6 @@
 angular.module('parkscenter')
 .component('hudMain', {
-	templateUrl: 'templates/hud-main.template.html',
+	templateUrl: 'templates/pc/hud-main.template.html',
 	controller: function($scope, $rootScope, $location, $timeout, $filter){
 		var ctrl = this;
 		
