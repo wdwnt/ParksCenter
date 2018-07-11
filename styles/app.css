@@ -123,3 +123,97 @@
 .parkscenter-hud input{
 	width: calc(100% - 20px);
 }
+
+/* ParksCenter Vs. */
+
+.parkscenter-vs-hud .main .footer{
+	background-color: #f53214;
+}
+
+/*
+ * Bracket CSS
+ */
+
+.parkscenter-vs-hud .main .bracket{
+	--bracket-line-color: 1px solid #aaa;
+	--border-color: 1px solid black;
+	--bracket-background-color: white;
+	--inprog-color: lightgray;
+	--winner-color: lightgreen;
+	--loser-color: gray;
+
+	width: fit-content;
+	padding-left: 35px;
+	padding-right: 35px;
+	display:flex;
+	flex-direction:row;
+	background-color: var(--bracket-background-color);
+}
+.parkscenter-vs-hud .main .bracket .round{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	width:200px;
+	list-style:none;
+	padding:0;
+}
+.parkscenter-vs-hud .main .bracket .round .spacer{ flex-grow:1; }
+
+.parkscenter-vs-hud .main .bracket .round .game-spacer{
+	flex-grow:1;
+}
+
+.parkscenter-vs-hud .main .bracket li.game-top,
+.parkscenter-vs-hud .main .bracket li.game-bottom{
+	padding-left:20px;
+	background-color: var(--inprog-color);
+	border: var(--border-color) !important;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.parkscenter-vs-hud .main .bracket li.game.winner{
+	font-weight:bold;
+	background-color: var(--winner-color);
+}
+
+.parkscenter-vs-hud .main .bracket li.game.loser{
+	background-color: var(--loser-color);
+}
+
+.parkscenter-vs-hud .main .bracket li.game span{
+	float:right;
+	margin-right:5px;
+}
+
+.parkscenter-vs-hud .main .bracket li.game-top{
+	border-bottom:var(--bracket-line-color);
+}
+
+.parkscenter-vs-hud .main .bracket li.game-spacer{
+	min-height:100px;
+}
+
+.parkscenter-vs-hud .main .bracket ul.left li.game-spacer{
+	border-right:var(--bracket-line-color);
+}
+
+.parkscenter-vs-hud .main .bracket ul.right li.game-spacer{
+	border-left:var(--bracket-line-color);
+}
+
+.parkscenter-vs-hud .main .bracket ul.finals{
+	width: 250px;
+}
+
+.parkscenter-vs-hud .main .bracket ul.finals li.game-top{
+	margin-right: 50px
+}
+
+.parkscenter-vs-hud .main .bracket ul.finals li.game-bottom{
+	margin-left: 50px
+}
+
+.parkscenter-vs-hud .main .bracket li.game-bottom{
+	border-top:var(--bracket-line-color);
+}

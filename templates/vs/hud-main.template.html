@@ -1,0 +1,24 @@
+<div arrow-control="$ctrl.arrowControl[$dir]()" class="parkscenter-hud parkscenter-vs-hud">
+	<div class="main">
+		<div class="body">
+			&nbsp;<bracket model="$root.vsShowData"></bracket>
+		</div>
+		<div class="footer" id="footer">
+			TODO: MAKE THIS WORK
+		</div>
+	</div>
+</div>
+<div style="margin-top: 10px">
+	<md-select ng-model="audioOut"
+			   ng-change="$ctrl.setAllAudioOuts(audioOut)"
+			   placeholder="Select audio output"
+			   style="width: fit-content">
+		<md-option ng-repeat="device in $ctrl.audioOuts" ng-value="device.deviceId">{{device.label}}</md-option>
+	</md-select>
+	<audio controls preload="auto" id="introAudio">
+		<source src="../../audio/parksCenterVsIntro.mp3">
+	</audio>
+	<audio controls preload="auto" id="buzzer">
+		<source src="../../audio/buzzer.mp3">
+	</audio>
+</div>

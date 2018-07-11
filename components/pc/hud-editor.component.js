@@ -6,8 +6,8 @@ angular.module('parkscenter')
 		
 		ctrl.$onInit = function(){
             if(!$rootScope.showData){
-            	if(sessionStorage.getItem("lastGame")){
-					$rootScope.showData = JSON.parse(sessionStorage.getItem("lastGame"));
+            	if(sessionStorage.getItem("lastPCGame")){
+					$rootScope.showData = JSON.parse(sessionStorage.getItem("lastPCGame"));
 				}else{
 					var item = {
 						shortName: "",
@@ -31,7 +31,7 @@ angular.module('parkscenter')
 				return angular.toJson($rootScope.showData);
 			}, function(newVal){
 				if(newVal){
-					sessionStorage.setItem("lastGame", newVal);
+					sessionStorage.setItem("lastPCGame", newVal);
 				}
 			})
 		};
