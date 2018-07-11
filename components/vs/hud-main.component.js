@@ -24,6 +24,8 @@ angular.module('parkscenter')
 				$location.url("/vs/edit");
 			}else{
 				ctrl.clock = -1;
+				ctrl.footer = "Welcome to ParksCenter Vs.!";
+				ctrl.bracketClass = "bracket-hidden";
 				ctrl.getAudioOutputs();
 			}
 		};

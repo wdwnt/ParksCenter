@@ -1,10 +1,15 @@
-<div arrow-control="$ctrl.arrowControl[$dir]()" class="parkscenter-hud parkscenter-vs-hud">
+<div class="parkscenter-hud parkscenter-vs-hud">
 	<div class="main">
 		<div class="body">
-			&nbsp;<bracket model="$root.vsShowData"></bracket>
+			<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center">
+				<bracket ng-class="$ctrl.bracketClass" model="$root.vsShowData"></bracket>
+			</div>
 		</div>
 		<div class="footer" id="footer">
-			TODO: MAKE THIS WORK
+			<span ng-if="$ctrl.footer === 'fight'">
+				TODO FIGHT MODE
+			</span>
+			<span ng-if="$ctrl.footer !== 'fight'">{{$ctrl.footer}}</span>
 		</div>
 	</div>
 </div>
