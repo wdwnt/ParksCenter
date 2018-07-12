@@ -50,9 +50,11 @@ angular.module('parkscenter')
 			$timeout(function(){$scope.$apply();}, 0);
 		};
 		
-		ctrl.restartTimeout = function(){
-			$timeout.cancel(ctrl.timeoutCallback);
-			ctrl.clock = ctrl.getCurItem().duration;
+		ctrl.restartTimeout = function() {
+			if (ctrl.timeoutCallback){
+				$timeout.cancel(ctrl.timeoutCallback);
+			}
+			ctrl.clock = 210;
 			ctrl.tick();
 		};
 
@@ -70,6 +72,7 @@ angular.module('parkscenter')
 			ctrl.state.curGame = game;
 			ctrl.state.curGameVotes = [0,0,0,0,0];
 			ctrl.state.footer = 'fight';
+			ctrl.restartTimeout();
 		};
 
 		ctrl.updateScores = function(){

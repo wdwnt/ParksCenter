@@ -2,9 +2,10 @@
 	<div class="parkscenter-hud parkscenter-vs-hud">
 		<div class="main">
 			<div class="body">
-				<div style="width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center">
-					<bracket ng-class="{'bracket-visible':$ctrl.state.bracketVisible, 'bracket-hidden':!$ctrl.state.bracketVisible}" model="$root.vsShowData"></bracket>
+				<div class="clock {{$ctrl.state.footer === 'fight'?'clock-show':'clock-hide'}}">
+					<span ng-show="$ctrl.clockDate">{{$ctrl.clockDate | date:'m:ss'}}&nbsp;</span>
 				</div>
+				<bracket ng-class="{'bracket-visible':$ctrl.state.bracketVisible, 'bracket-hidden':!$ctrl.state.bracketVisible}" model="$root.vsShowData"></bracket>
 			</div>
 			<div class="footer" id="footer">
 				<div ng-if="$ctrl.state.footer === 'fight'" class="fight">
@@ -16,7 +17,7 @@
 							{{$ctrl.state.curGame.top.name}}
 						</div>
 					</div>
-					<div>vs.</div>
+					<img src="/images/vs/vs_no_tilt.png" style="height: 56px">
 					<div class="team">
 						<div>
 							{{$ctrl.state.curGame.bottom.name}}
@@ -32,7 +33,6 @@
 	</div>
 	<div class="right-sidebar">
 		<md-button class="md-raised md-primary" ng-click="$ctrl.state.bracketVisible = !$ctrl.state.bracketVisible">Show/hide bracket</md-button>
-		<md-button class="md-raised md-primary" ng-click="$ctrl.state.footer  = ''">Blank footer</md-button>
 		<div style="display: flex; justify-content: center; border-top: black 1px solid">
 			<a ng-click="$ctrl.sidebarRound(-1);"><i class="material-icons md-36">arrow_back</i></a>
 			<span>Round {{$ctrl.state.sidebarRound+1}}</span>

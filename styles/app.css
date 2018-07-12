@@ -87,6 +87,7 @@
 	height: calc(100% - 96px);
 	background-color: #00ff00;
 	overflow: hidden;
+	position: relative;
 }
 
 .parkscenter-hud .intro-logo{
@@ -255,13 +256,36 @@
 /* Animations for show/hide*/
 
 .parkscenter-vs-hud .main .bracket{
-	position: relative;
+	position: absolute;
 	transition:0.5s ease all;
+	left: calc((var(--app-width) - 1088px) / 2)
 }
 
 .parkscenter-vs-hud .main .bracket.bracket-hidden{
-	top: var(--app-height);
+	bottom: calc(var(--app-height) * -1);
 }
 .parkscenter-vs-hud .main .bracket.bracket-visible{
+	bottom: 0;
+}
+
+.parkscenter-vs-hud .main .clock{
+	position: relative;
+	transition:0.5s ease all;
+	height: 40px;
+	width: 100px;
+	left: 0;
+	font-size: 24px;
+	font-family: 'Arial Black', Gadget, sans-serif;
+	background-color: white;
+	color: black;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 40px;
+	border: 2px solid black;
+}
+.parkscenter-vs-hud .main .clock.clock-hide{
+	top: -45px;
+}
+.parkscenter-vs-hud .main .clock.clock-show{
 	top: 0;
 }
